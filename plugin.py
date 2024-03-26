@@ -11,7 +11,6 @@ header_pattern : re.Pattern = re.compile(r'(^#{1,6}\s+.*?)(?:\s*\{\s*helpId\s*:\
 global_dict = {}
 
 def on_pre_build(config):
-    logger.info(config)
     global_dict.clear()
 
 def on_post_build(config):
@@ -71,13 +70,6 @@ def on_page_markdown(markdown: str, page: Page, config, files):
         return text
 
     return re.sub(header_pattern, sub_cb, markdown)
-
-
-def on_page_content(html: str, page: Page, config, files):
-    return html
-
-def on_page_context(context, page: Page, config, nav):
-    return context
 
 def find_meta_entry(map, keyName):
     for key in map:
