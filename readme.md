@@ -1,5 +1,7 @@
 # Summary
-Mkdocs hook to generate a redirection `Default.htm` page to made from a `cshid` to a page or section reference. Target use is to generate custom help documentation to be used with [VTScada custom help](https://www.vtscada.com/help/Content/D_Customize/Dev_CustomHelpFiles.htm)
+Mkdocs hook to generate a redirection `Default.htm` page to map from a `cshid` to a page or section reference. Target use is to generate custom help documentation to be used with [VTScada custom help](https://www.vtscada.com/help/Content/D_Customize/Dev_CustomHelpFiles.htm)
+
+This is a proof of concept, has not been proven in production.
 
 # How To Use
 Each `helpid` needs to be an interger and globally unique. Last entry wins, but a warning will be issued during build.
@@ -15,8 +17,15 @@ helpid: 100
 etc..
 ```
 ## Section Reference
+A `helpid` can be assosciated with any level of heading.
 ```html
-# My Section { helpid: 101}
+# My Section { helpid: 101 }
+## Level 2 { helpid: 102 }
+### Level 3 { helpid: 103 }
+#### Level 4 { helpid: 104 }
+##### Level 5 { helpid: 105 }
+###### Level 6 { helpid: 106 }
+
 ```
 
 ## Together
