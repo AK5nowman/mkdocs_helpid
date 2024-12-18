@@ -4,7 +4,7 @@ Mkdocs hook to generate a redirection `Default.htm` page to map from a `cshid` t
 This is a proof of concept, has not been proven in production.
 
 # How To Use
-Each `helpid` needs to be an interger and globally unique. Last entry wins, but a warning will be issued during build.
+Each `helpid` needs to be an integer and globally unique. Last entry wins, but a warning will be issued during build.
 
 ## Page Reference
 Simply add a line to the page meta data defining the help id
