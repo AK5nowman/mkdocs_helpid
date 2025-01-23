@@ -1,5 +1,6 @@
 import re
 import os
+import json
 from mkdocs.plugins import get_plugin_logger
 from mkdocs.structure.pages import Page
 from pymdownx.slugs import slugify
@@ -25,8 +26,14 @@ def on_post_build(config):
     <title>Redirecting...</title>
     <script>
        (function (){{
-          var cshid = new URLSearchParams(window.location.search).get('cshid');
-          var rootUrl = 'Default.htm';
+          var regex = new RegExp('[#&]cshid=([^&#]*)');
+          var results = regex.exec(window.location.href);
+          var cshid = null;
+          if(results !== null){{
+            cshid = results[1];
+          }}
+
+          var rootUrl = 'default.htm';
           var baseUrl = window.location.pathname.replace(rootUrl, "");
 
           var redirects = {global_dict}
@@ -45,7 +52,7 @@ def on_post_build(config):
 
 </html>
 """
-    with open(os.path.join(output_dir, 'Default.htm'), 'w') as f:
+    with open(os.path.join(output_dir, 'default.htm'), 'w') as f:
         f.write(html_content)
 
 def on_page_markdown(markdown: str, page: Page, config, files):
